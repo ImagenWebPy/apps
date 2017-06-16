@@ -16,12 +16,12 @@ VERSION : 1.0
 -->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!-->
-<html lang="en">
+<html lang="es">
     <!--<![endif]-->
     <head>
         <!-- Character set configuration -->
         <meta charset="UTF-8">
-        <title>Loyalty Program - Kia</title>
+        <title>Kia Loyalty Customer Program</title>
         <link href="<?= URL; ?>images/favicon.ico" rel="icon" type="image/x-icon" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <!-- Viewport configuration, scaling options -->
@@ -62,11 +62,11 @@ VERSION : 1.0
                         <!-- Model body secton begin -->
                         <div class="modal-body">
                             <!-- Form group begin -->
-                            <form class="text-center mar-top" id="ContactFrom" method="post" action="<?= URL; ?>enviar-datos.php">
+                            <form class="text-center mar-top" id="ContactForm" method="post" action="<?= URL; ?>enviar-datos.php">
                                 <div class="form-group">
                                     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
                                         <div class="form-group">
-                                            <input maxlength="25" type="text" name="name" class="form-control" placeholder="Nombre" required>
+                                            <input maxlength="25" type="text" name="nombre" class="form-control" placeholder="Nombre" required>
                                             <i class="fa fa-user" aria-hidden="true"></i>
                                         </div>
                                     </div>
@@ -74,7 +74,7 @@ VERSION : 1.0
                                 <div class="form-group">
                                     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
                                         <div class="form-group">
-                                            <input maxlength="20" type="text" name="email" class="form-control" placeholder="Apellido" required>
+                                            <input maxlength="20" type="text" name="apellido" class="form-control" placeholder="Apellido" required>
                                             <i class="fa fa-user" aria-hidden="true"></i>
                                         </div>
                                     </div>
@@ -82,7 +82,7 @@ VERSION : 1.0
                                 <div class="form-group">
                                     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
                                         <div class="form-group">
-                                            <input maxlength="80" type="text" name="subject" class="form-control" placeholder="C.I." required>
+                                            <input maxlength="80" type="text" name="ci" class="form-control" placeholder="C.I." required>
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </div>
                                     </div>
@@ -90,7 +90,7 @@ VERSION : 1.0
                                 <div class="form-group">
                                     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
                                         <div class="form-group">
-                                            <input maxlength="80" type="text" name="subject" class="form-control" placeholder="Email" required>
+                                            <input maxlength="80" type="text" name="email" class="form-control" placeholder="Email" required>
                                             <i class="fa fa-envelope" aria-hidden="true"></i>
                                         </div>
                                     </div>
@@ -98,12 +98,13 @@ VERSION : 1.0
                                 <div class="form-group">
                                     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
                                         <div class="form-group">
-                                            <input type="file" name="pic" accept="image/*" required>
+                                            <input type="file" name="imagen" accept="image/*" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
-                                <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2"><input type="submit" value="Enviar"  class="btn btn-block hvr-shutter-out-horizontal">
+                                <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+                                    <input type="submit" value="Enviar" id="btnSubmit"  class="btn btn-block hvr-shutter-out-horizontal">
                                 </div>
                             </form>
                             <div class="space-bottom"></div>
@@ -164,8 +165,13 @@ VERSION : 1.0
                 $(window).load(function () {
                     $(".loader").fadeOut("slow");
                 })
-                $("#ContactFrom").submit(function (event) {
-                    event.preventDefault();
+                $("#btnSubmit").click(function () {
+                    var nombre = $("input[name=nombre]");
+                    var apellido = $("input[name=apellido]");
+                    var ci = $("input[name=ci]");
+                    var email = $("input[name=email]");
+                    var imagen = $("input[name=imagen]");
+                    $("#ContactForm").submit();
                 });
             });
         </script>
