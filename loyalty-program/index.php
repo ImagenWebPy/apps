@@ -1,10 +1,6 @@
 <?php
-$server = $_SERVER['HTTP_HOST'];
-if ($server != 'localhost') {
-    define('URL', 'https://www.imagenwebhq.com/appsfb/loyalty-program/');
-} else {
-    define('URL', 'http://localhost/apps/loyalty-program/');
-}
+include './config.php';
+include './lib/Database.php';
 ?>
 <!doctype html>
 <!--
@@ -37,11 +33,15 @@ VERSION : 1.0
         <link href="<?= URL; ?>css/font-awesome.min.css" rel="stylesheet">
         <!-- Google web font  -->
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+        <link href="<?= URL; ?>css/html5fileupload.css?v1.0" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <!-- jQuery JavaScript plugins -->
+        <script src="<?= URL; ?>js/jquery-1.12.4.min.js" type="text/javascript"></script>
+        <script src="<?= URL; ?>js/html5fileupload.min.js?v1.2.1"></script>
     </head>
     <body class="demo-one">
         <!-- Loding GIF Begin -->
@@ -60,54 +60,47 @@ VERSION : 1.0
                             <div class="border-bottom"></div>
                         </div>
                         <!-- Model body secton begin -->
-                        <div class="modal-body">
-                            <!-- Form group begin -->
-                            <form class="text-center mar-top" id="ContactForm" method="post" action="<?= URL; ?>enviar-datos.php">
-                                <div class="form-group">
-                                    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-                                        <div class="form-group">
-                                            <input maxlength="25" type="text" name="nombre" class="form-control" placeholder="Nombre" required>
-                                            <i class="fa fa-user" aria-hidden="true"></i>
+                        <div class="modal-body" id="modalBody">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form action="<?= URL; ?>upload.php" role="form" method="POST" enctype="multipart/form-data" id="frmLoyalty">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Nombre Completo:</label>
+                                                <input type="text" name="nombre" class="form-control" />
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-                                        <div class="form-group">
-                                            <input maxlength="20" type="text" name="apellido" class="form-control" placeholder="Apellido" required>
-                                            <i class="fa fa-user" aria-hidden="true"></i>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>E-mail:</label>
+                                                <input type="text" name="email" class="form-control" />
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-                                        <div class="form-group">
-                                            <input maxlength="80" type="text" name="ci" class="form-control" placeholder="C.I." required>
-                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Teléfono:</label>
+                                                <input type="text" name="telefono" class="form-control" />
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-                                        <div class="form-group">
-                                            <input maxlength="80" type="text" name="email" class="form-control" placeholder="Email" required>
-                                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>Imagen:</label>
+                                                <div class="html5fileupload demo_form" data-url="upload.php"  data-valid-extensions="jpg,png,gif,bmp,jpeg" data-form="true" style="width: 100%;">
+                                                    <input type="file" name="file_1" required="required" />
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-                                        <div class="form-group">
-                                            <input type="file" name="imagen" accept="image/*" required>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <button class="btn btn-success btn-lg btn-block" id="btnEnviar" type="submit">Enviar</button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
+                                    <script>
+                                        $('.html5fileupload.demo_form').html5fileupload();
+                                    </script>
                                 </div>
-                                <div class="clearfix"></div>
-                                <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-                                    <input type="submit" value="Enviar" id="btnSubmit"  class="btn btn-block hvr-shutter-out-horizontal">
-                                </div>
-                            </form>
-                            <div class="space-bottom"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -149,8 +142,7 @@ VERSION : 1.0
             </div>
         </div> 
         <!-- Container End -->
-        <!-- jQuery JavaScript plugins -->
-        <script src="<?= URL; ?>js/jquery-1.12.4.min.js" type="text/javascript"></script>
+
         <!-- Bootstrap JavaScript plugins -->
         <script src="<?= URL; ?>js/bootstrap.min.js" type="text/javascript"></script>
 
@@ -159,21 +151,60 @@ VERSION : 1.0
 
         <!-- Text Animation jQuery JavaScript plugins -->
         <script src="<?= URL; ?>js/css-animate.js" type="text/javascript"></script>
+
         <!-- Website Load Script -->
         <script type="text/javascript">
-            $(function () {
-                $(window).load(function () {
-                    $(".loader").fadeOut("slow");
-                })
-                $("#btnSubmit").click(function () {
-                    var nombre = $("input[name=nombre]");
-                    var apellido = $("input[name=apellido]");
-                    var ci = $("input[name=ci]");
-                    var email = $("input[name=email]");
-                    var imagen = $("input[name=imagen]");
-                    $("#ContactForm").submit();
-                });
-            });
+                                        $(function () {
+                                            $(window).load(function () {
+                                                $(".loader").fadeOut("slow");
+                                            })
+                                            //click btn enviar
+                                            $('#btnEnviar').click(function (e) {
+                                                e.preventDefault();
+                                                var nombre = $('input[name=nombre]');
+                                                var email = $('input[name=email]');
+                                                var telefono = $('input[name=telefono]');
+                                                if (nombre.val().trim().length == 0) {
+                                                    nombre.css("border", "2px solid red");
+                                                } else {
+                                                    nombre.css("border", "1px solid #8c8c8c");
+                                                }
+                                                if (email.val().trim().length == 0) {
+                                                    email.css("border", "2px solid red");
+                                                } else {
+                                                    email.css("border", "1px solid #8c8c8c");
+                                                }
+                                                if (telefono.val().trim().length == 0) {
+                                                    telefono.css("border", "2px solid red");
+                                                } else {
+                                                    telefono.css("border", "1px solid #8c8c8c");
+                                                }
+                                                if (nombre.val().trim().length > 0 && email.val().trim().length > 0 && telefono.val().trim().length > 0) {
+                                                    $.ajax({
+                                                        type: 'POST',
+                                                        url: '<?= URL; ?>upload.php',
+                                                        data: new FormData($('#frmLoyalty')[0]),
+                                                        cache: false,
+                                                        contentType: false,
+                                                        processData: false,
+                                                        beforeSend: function () {
+                                                            // this is where we append a loading image
+                                                            $('#modalBody').html("");
+                                                            $('#modalBody').html('<div class="col-sm-12"><img src="<?= URL; ?>images/loading2.gif" alt="Cargando..." style="margin: 30px auto; width: 100px;" /></div>');
+                                                        },
+                                                        success: function (data) {
+                                                            // successful request; do something with the data
+                                                            $('#modalBody').html(data['content']);
+
+                                                        },
+                                                        error: function () {
+                                                            // failed request; give feedback to user
+                                                            $('#modalBody').html('<p class="class="bg-danger""><strong>Oops!</strong> Lo sentimos, ha ocurrido un error. Por favor vuelva a intertarlo.</p>');
+                                                        }
+                                                    });
+                                                }
+                                            });
+                                        });
         </script>
     </body>
 </html>

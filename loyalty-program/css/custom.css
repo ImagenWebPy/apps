@@ -1,2 +1,42 @@
 .upImg{ color: #fff;}
+.bgColor {
+    max-width: 440px;
+    height:150px;
+    background-color: #fff4be;
+    border-radius: 4px;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+.bgColor label{
+    font-weight: bold;
+    color: #A0A0A0;
+}
+#targetLayer{
+    float:left;
+    width:150px;
+    height:150px;
+    text-align:center;
+    line-height:150px;
+    font-weight: bold;
+    color: #C0C0C0;
+    background-color: #F0E8E0;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+}
+#uploadFormLayer{
+    float:left;
+    padding: 20px;
+}
+.inputFile {
+    padding: 5px;
+    background-color: #FFFFFF;
+    border:#F0E8E0 1px solid;
+    border-radius: 4px;
+}
+.image-preview {	
+    width:150px;
+    height:150px;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+}
 
