@@ -6,14 +6,14 @@ html, body								{ font-family: arial; }
 .html5fileupload						{ background-color: #eeeeee; text-align: left; position: relative; border: 1px solid #dddddd; display: block; min-height: 55px; }
 .html5fileupload .add					{ border: none; background-color: #f3f3f3; }
 .html5fileupload .add:after,
-.html5fileupload:after					{ content: 'Drop your file(s) here or click to add one!'; font-size: 30px; color: #bbbbbb; position: absolute; top: 10%; left: 0; width: 100%; text-align: center; z-index:0;}
+.html5fileupload:after					{ content: 'Arrastre su archivo aquí o haga clic para agregar uno!'; font-size: 20px; color: #bbbbbb; position: absolute; top: 20%; left: 0; width: 100%; text-align: center; z-index:0;}
 .html5fileupload .add:before,
 .html5fileupload:before					{ content: ''; font-family:"Glyphicons Halflings"; font-size: 60px; color: #dbdbdb; position: absolute; top: 20%; left: 0; width: 100%; text-align: center; z-index:0;}
 
 .html5fileupload.empty:after			{ content: '';}
 .html5fileupload.empty:before			{ content: '';}
 
-.html5fileupload.loading:after			{ content: 'Please wait, file is loading'; }
+.html5fileupload.loading:after			{ content: 'Por favor espere, se esta cargando su archivo'; }
 .html5fileupload.loading:before			{ content: ''; }
 
 /* not valid mime */

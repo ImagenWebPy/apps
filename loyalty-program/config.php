@@ -7,11 +7,11 @@ function getHost() {
 
 $host = getHost();
 switch ($host) {
-    case 'imagenwebhq.com':
+    case 'www.imagenwebhq.com':
         define('URL', 'https://www.imagenwebhq.com/appsfb/loyalty-program/');
-        define('DB_USER', 'root');
-        define('DB_PASS', '2544386');
-        define('DB_NAME', 'intranet');
+        define('DB_USER', 'raulimag_garden');
+        define('DB_PASS', 'DIXS8XMd*bZ)D5lV');
+        define('DB_NAME', 'raulimag_loyalty');
         break;
     case 'localhost':
         define('URL', 'http://localhost/apps/loyalty-program/');

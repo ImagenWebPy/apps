@@ -1,7 +1,9 @@
 <?php
 
-include './config.php';
-include './lib/Database.php';
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
+include 'config.php';
+include 'lib/Database.php';
 $db = new Database(DB_TYPE, DB_HOST, DB_NAME, DB_USER, DB_PASS);
 if (!empty($_POST)) {
     $error = false;
@@ -47,6 +49,7 @@ if (!empty($_POST)) {
             'content' => '<p class="bg-error">El correo que esta intentando registrar ya existe.</p>',
         );
     }
+    header('Content-Type: application/json');
     echo json_encode($data);
 }
 ?>
